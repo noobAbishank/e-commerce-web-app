@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Button, Grid } from '@material-ui/core';
+import { Container, Typography, Button, Grid, CssBaseline } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 import useStyles from './styles';
@@ -16,6 +16,7 @@ const Cart = ({ cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart
 
     const FilledCart = () => (
         <>
+            <CssBaseline />
             <Grid container spacing={3}>
                 {cart.line_items.map((item) => (
                     <Grid item key={item.id} xs={12} sm={4}>

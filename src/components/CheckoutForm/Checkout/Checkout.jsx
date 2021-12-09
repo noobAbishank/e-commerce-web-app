@@ -7,7 +7,7 @@ import useStyles from './styles';
 import AddressForm from '../AddressForm';
 import PaymentForm from '../PaymentForm';
 
-const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
+const Checkout = ({ cart, order, onCaptureCheckout, error, handleEmptyCart }) => {
     const classes = useStyles();
     const history = useHistory();
     const steps = ['Shipping address', 'Payment details'];
@@ -28,6 +28,8 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         };
         
         generateToken();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart]);
 
     const nextStep = () => setActiveStep((previousActiveStep) => previousActiveStep + 1);
@@ -45,6 +47,9 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
         }, 3000);
     };
 
+    const handleClick = () => {
+        handleEmptyCart();
+    };
 
     let Confirmation = () => order.customer ? (
         <>
@@ -54,7 +59,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 <Typography variant="subtitle2">Order ref: {order.customer.reference}</Typography>
             </div>
             <br />
-            <Button component={Link} to="/" variant="outlined" type="button">Back to home</Button>
+            <Button component={Link} to="/" variant="outlined" type="button" onClick={handleClick}>Back to home</Button>
         </>
     ) : isFinished ? (
         <>
@@ -63,7 +68,7 @@ const Checkout = ({ cart, order, onCaptureCheckout, error }) => {
                 <Divider className={classes.divider} />                
             </div>
             <br />
-            <Button component={Link} to="/" variant="outlined" type="button">Back to home</Button>
+            <Button component={Link} to="/" variant="outlined" type="button" onClick={handleClick}>Back to home</Button>
         </>
     ) : (
         <div className={classes.spinner}>

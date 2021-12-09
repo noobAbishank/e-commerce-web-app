@@ -25,8 +25,13 @@ export default makeStyles((theme) => ({
     marginTop: '10%',
     width: '100%',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    
   },
   buttonAlignment: {
-    margin: 'auto auto',
+    margin: '10px auto',
   }
 }));

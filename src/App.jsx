@@ -70,8 +70,6 @@ const App = () => {
         // eslint-disable-next-line
     }, []);
 
-    console.log(cart);
-
     return (
         <Router>
             <div>
@@ -94,6 +92,7 @@ const App = () => {
                             order={order}
                             onCaptureCheckout={handleCaptureCheckout}
                             error={errorMessage}
+                            handleEmptyCart={handleEmptyCart}
                         />
                     </Route>                   
                 </Switch>
